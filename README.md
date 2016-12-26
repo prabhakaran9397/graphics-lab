@@ -1,0 +1,3 @@
+# Graphics Lab
+
+$`make lines`
