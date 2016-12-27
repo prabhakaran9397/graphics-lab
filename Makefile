@@ -1,8 +1,8 @@
 
 %: %.cpp
-	g++ $^ -lglut -lGL -lGLU -o $@.o
+	rm -rf $@.o
+	g++ $^ -o $@.o -lgraph
 	./$@.o
-	rm $@.o
 
 clean:
 	rm -rf *.o
