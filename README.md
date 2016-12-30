@@ -7,4 +7,4 @@ $`./install`
 
 ### Executing this code
 
-$`make lines`
+$`make graph`
