@@ -50,6 +50,30 @@ void myLineC(int x, int y, int ex, int ey)
 	}
 }
 
+void myLineB(int sx, int sy, int ex, int ey)					//Bresenham line algorithm
+{
+	int dx = sx-ex;
+	int dy = sy-ey;
+	int sign = (1.0*dy)/dx>0;
+	int xmajor = abs(dx)>=abs(dy);
+	int major = xmajor ? abs(dx) : abs(dy);
+	int minor = !xmajor ? abs(dx) : abs(dy);
+	int pk = 2*minor-major;
+
+	while(sx!=ex && sy!=ey) {
+		putpixel(sx, getmaxy()-sy, getcolor());
+		sx = xmajor ? sx+1 : sx;
+		sy = xmajor ? sy : sy+(sign?(1):(-1));
+		if(pk>0) {
+			sx = xmajor ? sx : sx+1;
+			sy = xmajor ? sy+(sign?(1):(-1)) : sy;
+			pk = pk + 2*minor - 2*major;
+		} else {
+			pk = pk + 2*minor;
+		}
+	}
+}
+
 void myLineS(int sx, int sy, int ex, int ey)
 {
 	line(sx, getmaxy()-sy, ex, getmaxy()-ey);					//Flip the origin vertically

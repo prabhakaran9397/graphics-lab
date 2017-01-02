@@ -1,5 +1,6 @@
 #include <graphics.h>
 #include "lines.h"
+#include "circles.h"
 #define DELAY_TIME 2000				//Microseconds
 
 void init(void)
@@ -12,6 +13,7 @@ void init(void)
 
 void draw(void)						// Draw here
 {
+	/*
 	setbkcolor(BLACK);	
 	setcolor(RED);					//DDA Method
 	outtextxy(10, 10, "DDA Method Lines");
@@ -59,6 +61,24 @@ void draw(void)						// Draw here
 	myLineC(0, 150, 400, 0);		//X, -
 	myLineC(0, 0, 150, 400);		//Y, +
 	myLineC(0, 400, 150, 0);		//Y, -
+	
+	setbkcolor(BLACK);	
+	setcolor(RED);					//Bresenham's method
+	myLineB(0, 0, 400, 150);		//X, +
+	myLineB(0, 150, 400, 0);		//X, -
+	myLineB(0, 0, 150, 400);		//Y, +
+	myLineB(0, 400, 150, 0);		//Y, -
+	*/
+
+	myCircleB(200, 100, 100);
+
+	/*
+	setcolor(GREEN);				//Graphic Library Lines
+	myLineS(0, 0, 400, 150);		//X, +
+	myLineS(0, 150, 400, 0);		//X, -
+	myLineS(0, 0, 150, 400);		//Y, +
+	myLineS(0, 400, 150, 0);		//Y, -
+	*/
 }
 
 void end(void)
