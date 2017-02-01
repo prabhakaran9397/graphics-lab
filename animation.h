@@ -6,6 +6,14 @@ int y(int a)
 	return getmaxy()-a;
 }
 
+void flipAxis(int fpoints[], int points[], int n)
+{
+	for(int i=0; i<2*n; i+=2) {
+		fpoints[i]		= points[i];
+		fpoints[i+1]	= y(points[i+1]);
+	}
+}
+
 void combine(int a[3][3], int b[3][3])
 {
 	int c[3][3];
@@ -63,9 +71,15 @@ void valMat(int a[3][3], int points[], int n)
 	int _x, _y;
 
 	for(int i=0; i<2*n; i+=2) {
+		/*
 		_x 			= points[i];
 		_y 			= y(points[i+1]);
 		points[i]	= a[0][0]*_x + a[0][1]*_y + a[0][2];
 		points[i+1] = y(a[1][0]*_x + a[1][1]*_y + a[1][2]);
+		*/
+		_x 			= points[i];
+		_y 			= points[i+1];
+		points[i]	= a[0][0]*_x + a[0][1]*_y + a[0][2];
+		points[i+1] = a[1][0]*_x + a[1][1]*_y + a[1][2];
 	}
 }
