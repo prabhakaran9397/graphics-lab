@@ -44,9 +44,10 @@ void myLineC(int x, int y, int ex, int ey)
 
 	for(int i=0; i<step; ++i) {
 		putpixel(x, getmaxy()-y, getcolor());					//Plot the point
+		count+=min(abs(dx), abs(dy));
 		x = major ? x+1 : (count<step ? x : x+1);
 		y = major ? (count<step ? y : (sign ? y+1 : y-1)) : (sign ? y+1 : y-1);
-		count = count<step ? count+min(abs(dx), abs(dy)) : count-step;
+		count = count<step ? count : count-step;
 	}
 }
 

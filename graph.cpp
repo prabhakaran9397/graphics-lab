@@ -61,7 +61,6 @@ void draw(void)						// Draw here
 	myLineC(0, 150, 400, 0);		//X, -
 	myLineC(0, 0, 150, 400);		//Y, +
 	myLineC(0, 400, 150, 0);		//Y, -
-	
 	setbkcolor(BLACK);	
 	setcolor(RED);					//Bresenham's method
 	myLineB(0, 0, 400, 150);		//X, +
@@ -83,7 +82,7 @@ void draw(void)						// Draw here
 
 void end(void)
 {
-	getchar();						// Don't close it 
+	while(!getchar());						// Don't close it 
 	closegraph();
 }
 
