@@ -1,23 +1,5 @@
-#include <cmath>
+#include "basics.h"
 #define PIDEG 0.017453
-
-int x(int a)
-{
-	return getmaxx()/2+a;
-}
-
-int y(int a)
-{
-	return getmaxy()/2-a;
-}
-
-void flipAxis(int fpoints[], int points[], int n)
-{
-	for(int i=0; i<2*n; i+=2) {
-		fpoints[i]		= x(points[i]);
-		fpoints[i+1]	= y(points[i+1]);
-	}
-}
 
 void combine(float a[3][3], float b[3][3])
 {

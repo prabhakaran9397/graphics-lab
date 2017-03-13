@@ -12,11 +12,9 @@ void init(void)
 void draw(void)
 {
 	int points[]={150, 150, 200, 200, 200, 150, 150, 150};
-	int n = (sizeof(points))/(2*sizeof(points[0]));
-	int fpoints[8];
+	int n = 4;
 
-	flipAxis(fpoints, points, n);
-	drawpoly(n, fpoints);
+	mypolygon(points, n);
 
 	int centroid_x = (points[0]+points[2]+points[4])/3.0;
 	int centroid_y = (points[1]+points[3]+points[5])/3.0;
@@ -25,13 +23,12 @@ void draw(void)
 	float T[3][3];
 
 	translateMat(T, -centroid_x, -centroid_y);	combine(T, I);
-	scaleMat(T, 2, 2);	combine(T, I);
-	rotateMat(T, 90);	combine(T, I);
+	scaleMat(T, 2, 2);							combine(T, I);
+	rotateMat(T, 90);							combine(T, I);
 	translateMat(T, centroid_x,  centroid_y);	combine(T, I);
 	valMat(I, points, n);
 
-	flipAxis(fpoints, points, n);
-	drawpoly(n, fpoints);	
+	mypolygon(points, n);	
 }
 
 void end(void)
