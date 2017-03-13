@@ -1,15 +1,20 @@
 #include <cmath>
 #define PIDEG 0.017453
 
+int x(int a)
+{
+	return getmaxx()/2+a;
+}
+
 int y(int a)
 {
-	return getmaxy()-a;
+	return getmaxy()/2-a;
 }
 
 void flipAxis(int fpoints[], int points[], int n)
 {
 	for(int i=0; i<2*n; i+=2) {
-		fpoints[i]		= points[i];
+		fpoints[i]		= x(points[i]);
 		fpoints[i+1]	= y(points[i+1]);
 	}
 }

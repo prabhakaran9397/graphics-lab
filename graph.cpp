@@ -61,15 +61,16 @@ void draw(void)						// Draw here
 	myLineC(0, 150, 400, 0);		//X, -
 	myLineC(0, 0, 150, 400);		//Y, +
 	myLineC(0, 400, 150, 0);		//Y, -
-	setbkcolor(BLACK);	
+	setbkcolor(BLACK);
+	*/
 	setcolor(RED);					//Bresenham's method
 	myLineB(0, 0, 400, 150);		//X, +
 	myLineB(0, 150, 400, 0);		//X, -
 	myLineB(0, 0, 150, 400);		//Y, +
 	myLineB(0, 400, 150, 0);		//Y, -
-	*/
+	
 
-	myCircleB(200, 100, 100);
+	//myCircleB(200, 100, 100);
 
 	/*
 	setcolor(GREEN);				//Graphic Library Lines
