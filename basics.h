@@ -1,5 +1,7 @@
 #include <graphics.h>
 #include <math.h>
+#include <iostream>
+using namespace std;
 
 //x control
 int _x(int x)
@@ -185,4 +187,58 @@ void mypolygon(int points[], int n)
 	{
 		myline(points[i], points[i+1], points[i+2], points[i+3]);
 	}
+}
+
+void mylineclip(int xmin, int ymin, int xmax, int ymax, 
+				int sx, int sy, int ex, int ey)
+{
+	myline(xmin, 0, xmin, getmaxy());
+	myline(xmax, 0, xmax, getmaxy());
+	myline(0, ymin, getmaxx(), ymin);
+	myline(0, ymax, getmaxx(), ymax);
+
+	if(sx > ex)
+	{
+		swap(sx, sy, ex, ey);
+	}
+	myline(sx, sy, ex, ey);
+
+	int p[4], q[4], points[8], c=0;
+	float u;
+
+	p[0] = -abs(sx-ex);	q[0] = sx-xmin;
+	p[1] = -p[0];		q[1] = xmax-sx;
+	p[2] = -abs(sy-ey);	q[2] = sy-ymin;
+	p[3] = -p[2];		q[3] = ymax-sy;
+
+	if(xmin <= sx && sx <= xmax && ymin <= sy && sy <= ymax)
+	{
+		points[c] = sx;	points[c+1] = sy; c+=2;
+	}
+
+	for(int i=0; i<4; ++i)
+	{
+		if(p[i] != 0)
+		{
+			u = (1.0*q[i])/p[i];
+			int x = sx + (ex-sx)*u;
+			int y = sy + (ey-sy)*u;
+			if(xmin <= x && x <= xmax && ymin <= y && y <= ymax)
+			{
+				if(sx <= x && x <= ex && sy <= y && y <= ey)
+				{
+					points[c] = x;	points[c+1] = y; c+=2;
+				}
+			}
+		}
+	}
+
+	if(xmin <= ex && ex <= xmax && ymin <= ey && ey <= ymax)
+	{
+		points[c] = ex;	points[c+1] = ey; c+=2;
+	}
+	
+	setcolor(RED);
+	mypolygon(points, c/2);
+
 }
