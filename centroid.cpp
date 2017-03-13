@@ -1,12 +1,11 @@
 #include <graphics.h>
-#include "animation.h"
+#include "transforms.h"
 #define DELAY_TIME 2000				//Microseconds
 
 void init(void)
 {
 	int gd=DETECT;
 	int gm;
-
 	initgraph(&gd, &gm, NULL);
 }
 
@@ -22,18 +21,13 @@ void draw(void)
 	int centroid_x = (points[0]+points[2]+points[4])/3.0;
 	int centroid_y = (points[1]+points[3]+points[5])/3.0;
 
-	int I[3][3];
-	int T[3][3];
+	float I[3][3];	toIdentity(I);
+	float T[3][3];
 
-	toIdentity(I);
-	translateMat(T, -centroid_x, -centroid_y);
-	combine(T, I);
-	scaleMat(T, 2, 2);
-	combine(T, I);
-	rotateMat(T, 90);
-	combine(T, I);
-	translateMat(T, centroid_x,  centroid_y);
-	combine(T, I);
+	translateMat(T, -centroid_x, -centroid_y);	combine(T, I);
+	scaleMat(T, 2, 2);	combine(T, I);
+	rotateMat(T, 90);	combine(T, I);
+	translateMat(T, centroid_x,  centroid_y);	combine(T, I);
 	valMat(I, points, n);
 
 	flipAxis(fpoints, points, n);

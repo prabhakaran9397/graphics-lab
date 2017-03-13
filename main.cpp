@@ -1,4 +1,4 @@
-#include "2dalgo.h"
+#include "basics.h"
 
 void init(void)
 {
@@ -9,13 +9,15 @@ void init(void)
 
 void draw(void)
 {
-	/*
 	myline(0, 0, 400, 150);		//X, +
 	myline(0, 150, 400, 0);		//X, -
 	myline(0, 0, 150, 400);		//Y, +
 	myline(0, 400, 150, 0);		//Y, -
-	*/
-	mycircle(200, 100, 100);
+	
+	mycircle(200, 150, 50);
+
+	int points[] = {200, 200, 200, 300, 350, 350, 200, 200};
+	mypolygon(points, 4);
 }
 
 void end(void)
