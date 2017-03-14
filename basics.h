@@ -6,19 +6,24 @@ using namespace std;
 //x control
 int _x(int x)
 {
-	return x;
+	return getmaxx()/2+x;
 }
 
 //y control
 int _y(int y)
 {
-	return getmaxy()-y;
+	return getmaxy()/2-y;
 }
 
 //Draw point 
 void point(int x, int y)
 {
-	putpixel(_x(x), _y(y), getcolor());
+	x = _x(x);
+	y = _y(y);
+	if(0 < x && x < getmaxx() && 0 < y && y < getmaxy())
+	{
+		putpixel(x, y, getcolor());
+	}
 }
 
 //swap function
@@ -45,7 +50,7 @@ void mylineD(int sx, int sy, int ex, int ey)
 
 	for(int i=0; i<step; ++i)
 	{
-		point(round(x), round(y));
+		point(x, y);
 		if(abs(dx) > abs(dy))	//X-major line
 		{	
 			x = x + 1;
@@ -102,7 +107,7 @@ void mylineC(int sx, int sy, int ex, int ey)
 
 
 //Bresenham line algorithm
-void myline(int sx, int sy, int ex, int ey)
+void myline(int sx, int sy, int ex, int ey, int thick=1)
 {
 	if(sx > ex)
 	{
@@ -117,7 +122,11 @@ void myline(int sx, int sy, int ex, int ey)
 		int pk = 2*abs(dy) - abs(dx);
 		while(sx != ex || sy != ey)
 		{
-			point(sx, sy);	//draw point
+			for(int j=0; j<thick; ++j)
+			{
+					point(sx, sy+j);	//draw point
+					point(sx, sy-j);
+			}
 			sx = sx + 1;	//increment x
 			if(pk > 0)
 			{	
@@ -135,7 +144,11 @@ void myline(int sx, int sy, int ex, int ey)
 		int pk = 2*abs(dx) - abs(dy);
 		while(sx != ex || sy != ey)
 		{
-			point(sx, sy);	//draw point
+			for(int j=0; j<thick; ++j)
+			{
+					point(sx+j, sy);	//draw point
+					point(sx-j, sy);
+			}
 			sy = sy + sign; //increment or decrement y
 			if(pk > 0)
 			{	
@@ -181,12 +194,23 @@ void mycircle(int cx, int cy, int r)
 	}
 }
 
-void mypolygon(int points[], int n)
+void mypolygon(int points[], int n, int thick=1)
 {
 	for(int i=0; i+3<2*n; i+=2)
 	{
-		myline(points[i], points[i+1], points[i+2], points[i+3]);
+		myline(points[i], points[i+1], points[i+2], points[i+3], thick);
 	}
+}
+
+//Draw Coordinates
+void drawco(void)
+{
+	setcolor(GREEN);
+	myline(0, 0, 0, getmaxy());
+	myline(0, 0, getmaxx(), 0);
+	myline(0, 0, 0, -getmaxy());
+	myline(0, 0, -getmaxx(), 0);
+	setcolor(WHITE);
 }
 
 void mylineclip(int xmin, int ymin, int xmax, int ymax, 
