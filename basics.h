@@ -6,13 +6,15 @@ using namespace std;
 //x control
 int _x(int x)
 {
-	return getmaxx()/2+x;
+	//return getmaxx()/2+x;
+	return x;
 }
 
 //y control
 int _y(int y)
 {
-	return getmaxy()/2-y;
+	//return getmaxy()/2-y;
+	return getmaxy()-y;
 }
 
 //Draw point 

@@ -22,7 +22,7 @@ void combine(float a[3][3], float b[3][3])
 
 }
 
-void translateMat(float a[3][3], int tx, int ty)
+void translateMat(float a[3][3], float tx, float ty)
 {
 	a[0][0]=1; a[0][1]=0; a[0][2]=tx;
 	a[1][0]=0; a[1][1]=1; a[1][2]=ty;
@@ -39,7 +39,7 @@ void rotateMat(float a[3][3], int O)
 	a[2][0]=0; a[2][1]=0; a[2][2]=1;
 }
 
-void scaleMat(float a[3][3], int sx, int sy)
+void scaleMat(float a[3][3], float sx, float sy)
 {
 	a[0][0]=sx; a[0][1]=0; a[0][2]=0;
 	a[1][0]=0; a[1][1]=sy; a[1][2]=0;
