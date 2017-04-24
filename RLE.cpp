@@ -7,24 +7,16 @@ void encode(char S[], char E[])
 	int l = strlen(S);
 	int c = 1;
 	int k = 0;
-	for(int i=0; i<l; ++i)
-	{
-		if(i+1 < l && S[i] == S[i+1])
-		{
+	for(int i=0; i<l; ++i) {
+		if(i+1 < l && S[i] == S[i+1]) {
 			c = c + 1;
-		} 
-		else
-		{
-			if(c > 1) 
-			{
+		} else {
+			if(c > 1) {
 				int r = 0;
-				while(c)
-				{
+				while(c) {
 					r = r*10 + c%10;
 					c = c/10;
-				}
-				while(r)
-				{
+				} while(r) {
 					E[k++] = r%10 + '0';
 					r = r/10;
 				}
@@ -44,22 +36,14 @@ void decode(char E[], char D[])
 
 	for(int i=0; i<l; ++i)
 	{
-		if('0' <= E[i] && E[i] <= '9')
-		{
+		if('0' <= E[i] && E[i] <= '9') {
 			c = c*10 + E[i] - '0'; 
-		}
-		else
-		{
-			if(c == 0)
-			{
+		} else {
+			if(c == 0) {
 				D[k++] = E[i];	
-			}
-			else
-			{
+			} else {
 				for(int j=0; j<c; ++j)
-				{
 					D[k++] = E[i];
-				}
 				c = 0;
 			}
 		}
